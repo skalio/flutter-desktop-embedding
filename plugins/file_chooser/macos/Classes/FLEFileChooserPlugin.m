@@ -83,13 +83,14 @@ static NSString *const kCanChooseDirectoriesKey = @"canChooseDirectories";
 - (void)configureOpenPanel:(nonnull NSOpenPanel *)panel
              withArguments:(nonnull NSDictionary<NSString *, id> *)arguments {
   NSSet *argKeys = [NSSet setWithArray:arguments.allKeys];
+
+panel.canChooseFiles = true;
   if ([argKeys containsObject:kAllowsMultipleSelectionKey]) {
     panel.allowsMultipleSelection = [arguments[kAllowsMultipleSelectionKey] boolValue];
   }
   if ([argKeys containsObject:kCanChooseDirectoriesKey]) {
     BOOL canChooseDirectories = [arguments[kCanChooseDirectoriesKey] boolValue];
     panel.canChooseDirectories = canChooseDirectories;
-    panel.canChooseFiles = !canChooseDirectories;
   }
 }
 
